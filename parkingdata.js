@@ -1,7 +1,11 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
+const express = require("express");
 
-async function getParkingSpaces() {
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+async function fetchParkingData() {
   const url = "https://geoportal.wiesbaden.de/parkleitsystem/parkhaeuser.php";
 
   try {
@@ -36,5 +40,12 @@ async function getParkingSpaces() {
   }
 }
 
-// Example usage
-getParkingSpaces().then((data) => console.log(data));
+app.get("/api/parking", async (req, res) => {
+  const parkingData = await fetchParkingData();
+  res.json(parkingData);
+});
+
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
