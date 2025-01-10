@@ -23,12 +23,14 @@ async function fetchParkingData() {
       if (index === 0) return; // Skip header row if present
 
       const name = $(element).find("td:nth-child(1)").text().trim(); // Parking lot name
-      const availableSpaces = $(element).find("td:nth-child(2)").text().trim(); // Available spaces
+      const spacesInfo = $(element).find("td:nth-child(2)").text().trim(); // Available spaces
+      const spacesArray = spacesInfo.split("/");
 
-      if (name && availableSpaces) {
+      if (name && spacesArray && spacesArray.length >= 2) {
         parkingData.push({
           name,
-          availableSpaces: parseInt(availableSpaces, 10),
+          availableSpaces: parseInt(spacesArray[0], 10),
+          totalSpaces: parseInt(spacesArray[1], 10),
         });
       }
     });
