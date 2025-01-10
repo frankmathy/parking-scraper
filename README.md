@@ -21,10 +21,12 @@ Before you proceed, ensure you have the following installed on your system:
 
 1. **Navigate to the Project Directory**  
     Open a terminal and navigate to the root directory of this project (where the `Dockerfile` is located):
+
    `cd /path/to/your/project`
 
 2. **Build the Docker Image**  
    Use the following command to build the Docker image:
+
    `docker build -t parking-api .`
 
 - `-t parking-api`: Tags the image with the name `parking-api`.
@@ -40,6 +42,7 @@ Before you proceed, ensure you have the following installed on your system:
 
 1. **Run the Container**  
    Start a container from the built image using this command:
+
    `docker run -p 3000:3000 –name parking-api-container parking-api`
 
 - `-p 3000:3000`: Maps port 3000 on your local machine to port 3000 inside the container.
@@ -48,6 +51,7 @@ Before you proceed, ensure you have the following installed on your system:
 
 2. **Access the Application**  
    Once the container is running, you can access the Parking API at:
+
    `http://localhost:3000/api/parking`
 
 ---
@@ -57,11 +61,13 @@ Before you proceed, ensure you have the following installed on your system:
 1. **Stop the Container**
 
 To stop a running container:
+
 `docker stop parking-api-container`
 
 2. **Remove the Container**
 
 To remove a stopped container:
+
 `docker rm parking-api-container`
 
 ---
@@ -71,12 +77,15 @@ To remove a stopped container:
 If you want to share your Docker image via Docker Hub:
 
 1. Log in to Docker Hub:
+
    `docker login`
 
 2. Tag your image:
+
    `docker tag parking-api /parking-api`
 
 3. Push your image:
+
    `docker push /parking-api`
 
 Replace `<your-dockerhub-username>` with your actual Docker Hub username.
